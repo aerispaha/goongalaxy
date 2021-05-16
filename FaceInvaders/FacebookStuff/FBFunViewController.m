@@ -62,7 +62,7 @@
 }
 
 - (IBAction)loginButtonTapped:(id)sender {
-    //testApp ID = ***REMOVED***, App Secret = ***REMOVED***
+    //testApp ID = FB_APP_ID_1_SHH, App Secret = FB_SECRET_SHH
     NSString *appId = @"FB_SECRET_SHH";
     //for more permissions: http://developers.facebook.com/docs/authentication/permissions/
     NSString *permissions = @"publish_stream";

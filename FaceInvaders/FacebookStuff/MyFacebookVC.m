@@ -21,7 +21,7 @@
 - (id)init{
     self = [super init];
     if (self) {
-        facebook = [[Facebook alloc] initWithAppId:@"***REMOVED***" andDelegate:self];
+        facebook = [[Facebook alloc] initWithAppId:@"FB_APP_ID_1_SHH" andDelegate:self];
         
         NSLog(@"\nInitialized FACEBOOK! \naccess Token: %@ \n expiration Date: %@\n", [facebook accessToken], [facebook expirationDate]);
         
@@ -47,8 +47,8 @@
     if (self) {
         // Custom initialization
         
-        //testApp ID = ***REMOVED***, App Secret = ***REMOVED***
-        facebook = [[Facebook alloc] initWithAppId:@"***REMOVED***" andDelegate:self];
+        //testApp ID = FB_APP_ID_1_SHH, App Secret = FB_SECRET_SHH
+        facebook = [[Facebook alloc] initWithAppId:@"FB_APP_ID_2_SHH" andDelegate:self];
         
         NSLog(@"\nInitializing Fuckbook bullSHITTTTTTTTTTTT DUDDDE \naccess Token: %@ \n expiration Date: %@\n", [facebook accessToken], [facebook expirationDate]);
         
