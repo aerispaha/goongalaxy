@@ -130,7 +130,7 @@
 	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 #else
 	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
-          NSLog(@"DUDDDE?");
+          NSLog(@"CUNT?");
 #endif
 	*/
     
