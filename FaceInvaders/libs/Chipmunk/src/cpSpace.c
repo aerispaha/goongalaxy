@@ -341,7 +341,6 @@ cpSpaceAddBody(cpSpace *space, cpBody *body)
 	
 	cpArrayPush(space->bodies, body);
 	body->space = space;
-	
 	return body;
 }
 

@@ -18,15 +18,17 @@
 
 @implementation RootViewController
 
-/*
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
  - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 	// Custom initialization
+        NSLog(@"initWithNibName called on uiViewController");
+        
 	}
 	return self;
  }
- */
+ 
 
 /*
  // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -44,7 +46,7 @@
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	
+        NSLog(@"shouldAutorotateToInterfaceOrientation called at start up");
 	//
 	// There are 2 ways to support auto-rotation:
 	//  - The OpenGL / cocos2d way
@@ -59,6 +61,8 @@
 	// Since this method should return YES in at least 1 orientation, 
 	// we return YES only in the Portrait orientation
 	//
+    NSLog(@"GAME_AUTOROTATION==kGameAutorotationNone");
+    
 	return ( interfaceOrientation == UIInterfaceOrientationPortrait );
 	
 #elif GAME_AUTOROTATION==kGameAutorotationCCDirector
@@ -67,6 +71,11 @@
 	//
 	// Sample: Autorotate only in landscape mode
 	//
+    
+    //	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+    //			interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+    NSLog(@"GAME_AUTOROTATION==kGameAutorotationCCDirector");
 	if( interfaceOrientation == UIInterfaceOrientationLandscapeLeft ) {
 		[[CCDirector sharedDirector] setDeviceOrientation: kCCDeviceOrientationLandscapeRight];
 	} else if( interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
@@ -84,7 +93,12 @@
 	// Sample: Autorotate only in landscpe mode
 	//
 	// return YES for the supported orientations
-	
+    NSLog(@"GAME_AUTOROTATION==kGameAutorotationUIViewController");
+    /*
+	if( interfaceOrientation == UIInterfaceOrientationMaskLandscapeRight){
+        return YES;
+    }
+     */
 	return ( UIInterfaceOrientationIsLandscape( interfaceOrientation ) );
 	
 #else
@@ -92,8 +106,8 @@
 	
 #endif // GAME_AUTOROTATION
 	
-	
-	// Shold not happen
+	NSLog(@"GAME_AUTOROTATION==none\n\nPROBLEMMMMMMM!!!\nincorrect orientation setting");
+	// Should not happen
 	return NO;
 }
 
@@ -107,6 +121,8 @@
 	// Assuming that the main window has the size of the screen
 	// BUG: This won't work if the EAGLView is not fullscreen
 	///
+    
+    NSLog(@"\nGAME_AUTOROTATION==kGameAutorotationUIViewController\nwillRotate method called");
 	CGRect screenRect = [[UIScreen mainScreen] bounds];
 	CGRect rect = CGRectZero;
 
@@ -142,9 +158,22 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+    timesAppeared++;
+    NSLog(@"RootViewController timesAppeared = %d",timesAppeared);
+    if (timesAppeared == 2) {
+        NSLog(@"modal view dismissed");
+        timesAppeared = 0;
+        [[CCDirector sharedDirector] setDeviceOrientation: kCCDeviceOrientationPortrait];
+        [[CCDirector sharedDirector] startAnimation];
+    }
+    
+    NSLog(@"RootViewController viewDidAppear called 2");
+}
 
 - (void)dealloc {
+    NSLog(@"RootViewController dealloc");
+
     [super dealloc];
 }
 

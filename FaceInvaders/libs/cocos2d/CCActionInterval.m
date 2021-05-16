@@ -814,6 +814,8 @@ static inline float bezierat( float a, float b, float c, float d, ccTime t )
 	return [[[self alloc] initWithDuration:t bezier:c ] autorelease];
 }
 
+
+
 -(id) initWithDuration: (ccTime) t bezier:(ccBezierConfig) c
 {
 	if( (self=[super initWithDuration: t]) ) {
@@ -870,6 +872,25 @@ static inline float bezierat( float a, float b, float c, float d, ccTime t )
 #pragma mark -
 #pragma mark BezierTo
 @implementation CCBezierTo
+
+-(id) initWithDuration: (ccTime) t bezier:(ccBezierConfig) c
+{
+	if( (self=[super initWithDuration: t]) ) {
+		firstConfig_.controlPoint_1 = ccp(c.controlPoint_1.x, c.controlPoint_1.y);
+		firstConfig_.controlPoint_2 = ccp(c.controlPoint_2.x, c.controlPoint_2.y);
+		firstConfig_.endPosition = ccp(c.endPosition.x, c.endPosition.y);
+	}
+	return self;
+}
+-(void) startWithTarget:(id)aTarget
+{
+	[super startWithTarget:aTarget];
+	
+	config_.controlPoint_1 = ccpSub(firstConfig_.controlPoint_1, startPosition_);
+	config_.controlPoint_2 = ccpSub(firstConfig_.controlPoint_2, startPosition_);
+	config_.endPosition = ccpSub(firstConfig_.endPosition, startPosition_);
+}
+/*
 -(void) startWithTarget:(id)aTarget
 {
 	[super startWithTarget:aTarget];
@@ -877,6 +898,7 @@ static inline float bezierat( float a, float b, float c, float d, ccTime t )
 	config_.controlPoint_2 = ccpSub(config_.controlPoint_2, startPosition_);
 	config_.endPosition = ccpSub(config_.endPosition, startPosition_);
 }
+*/
 @end
 
 

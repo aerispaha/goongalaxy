@@ -258,6 +258,7 @@ typedef struct _ccBezierConfig {
  */
 @interface CCBezierTo : CCBezierBy
 {
+    ccBezierConfig firstConfig_;
 }
 @end
 

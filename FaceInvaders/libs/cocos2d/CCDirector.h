@@ -306,4 +306,9 @@ and when to execute the Scenes.
 // Profiler
 -(void) showProfilers;
 
+//Added by ASE
+//http://www.cocos2d-iphone.org/forum/topic/1722/page/2#post-63215
+//by manucorporat
+- (UIImage *)screenshotUIImage;
+
 @end
