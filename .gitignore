@@ -77,7 +77,7 @@ Sounds/
 Fonts/
 images/
 
-FaceInvaders/libs/
+#FaceInvaders/libs/
 
 # secrets
 fb-app-id.png
